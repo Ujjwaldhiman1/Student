@@ -5,6 +5,8 @@ import java.util.List;
 //import java.util.List;
 import java.util.Scanner;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +16,14 @@ import com.example.demo.model.Student;
 import com.example.demo.repository.StudentRepository;
 
 @Service
+@Transactional
 public class StudentService {
 
 	@Autowired
 	StudentRepository studentRepository;
 	 
 	
-	public  float average(Integer rollNo)
+	public  float average(Integer rollno)
 	{
 
 		/*  List <Student> studentlist = studentRepository.findAll();
@@ -34,32 +37,26 @@ public class StudentService {
 
 		  }
 		  */
-		Student s = studentRepository.findByRollNo(rollNo);
-		/*
-        int i;
-        float sum=0;
-        float average,percentage1;
-        
-		 List <Student> scan = studentRepository.findAll();
-        
-        for(i=0; i<5; i++){
-            markArray[i] = scan.indexOf(i);
-            sum = sum + markArray[i];
-        }
- 
-        average = sum/5;
-        percentage1 = (sum/500) * 100;
-        return (int) average;
-        */
+		Student s = studentRepository.findByRollno(rollno);
+		System.out.println(s);
 		List<Score> scorelist = s.getScore();
-		 int sum = 0;
+		
+		 float sum = 0;
 		 float average;
 		  for(Score a:scorelist)
 		  {
+			  System.out.println(a.getPercentage());
 			  sum = sum + a.getPercentage();
+			  System.out.println(sum);
+
 
 		  }
+		  
+		     System.out.println(sum);
+		     System.out.println((sum/(scorelist.size()*100)));
 			 average= ((sum) /(scorelist.size() *100)*100);
+			  System.out.println(average);
+
           return average;
 
 	}     
@@ -75,11 +72,11 @@ public class StudentService {
 	}
 
 
-	public int Average(String subject, int percentage) {
+/*	public int Average(String subject, int percentage) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+*/
 	   	
 	
 }

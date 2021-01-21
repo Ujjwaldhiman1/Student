@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,10 +22,12 @@ public  class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
-	@GetMapping("/average/{rollNo}")
-	public int average(@RequestParam Integer rollNo)
+	@GetMapping("/average")
+	public float average(@RequestParam Integer rollno)
 	{
-	 	return (int) studentService.average(rollNo);
+	 	System.out.println(rollno);
+		return (float) studentService.average(rollno);
+	 	
 
 	}
 

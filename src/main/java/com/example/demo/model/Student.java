@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Student {
 	
 	@Id
-	@Column(name="rollno")
+	@Column
 	private Integer rollno;
 	
 	@Column
@@ -27,7 +27,8 @@ public class Student {
 	@Column
 	private String age;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+//	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="scoreId")
 	private List<Score> score; 
 
