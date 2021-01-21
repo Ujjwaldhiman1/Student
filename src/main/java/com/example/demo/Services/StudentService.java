@@ -8,6 +8,7 @@ import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.Score;
 import com.example.demo.model.Student;
 //import com.example.demo.model.User;
 import com.example.demo.repository.StudentRepository;
@@ -19,7 +20,7 @@ public class StudentService {
 	StudentRepository studentRepository;
 	 
 	
-	public  int average(Integer rollNo)
+	public  float average(Integer rollNo)
 	{
 
 		/*  List <Student> studentlist = studentRepository.findAll();
@@ -34,7 +35,7 @@ public class StudentService {
 		  }
 		  */
 		Student s = studentRepository.findByRollNo(rollNo);
-		int markArray[] = new int[5];
+		/*
         int i;
         float sum=0;
         float average,percentage1;
@@ -49,7 +50,18 @@ public class StudentService {
         average = sum/5;
         percentage1 = (sum/500) * 100;
         return (int) average;
-        
+        */
+		List<Score> scorelist = s.getScore();
+		 int sum = 0;
+		 float average;
+		  for(Score a:scorelist)
+		  {
+			  sum = sum + a.getPercentage();
+
+		  }
+			 average= ((sum) /(scorelist.size() *100)*100);
+          return average;
+
 	}     
 	
 
