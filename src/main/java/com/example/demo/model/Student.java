@@ -27,9 +27,10 @@ public class Student {
 	@Column
 	private String age;
 	
-//	@OneToMany(cascade = CascadeType.ALL)
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="scoreId")
+	//@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="scoreId",fetch = FetchType.EAGER,cascade =CascadeType.ALL)
+	//@JoinColumn(name="scoreId")
+	
 	private List<Score> score; 
 
 

@@ -1,9 +1,11 @@
 package com.example.demo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 //import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -12,8 +14,8 @@ import javax.persistence.Table;
 public class Score {
 	
 	@Id
-	@Column(name="scoreid")
-	private Integer scoreid;
+	@Column(name="scoreId")
+	private Integer scoreId;
 
 	@Column(name="subject")
 	private String subject;
@@ -21,9 +23,9 @@ public class Score {
 	@Column(name="percentage")
 	private int percentage;
 	
-   // @ManyToOne(fetch = FetchType.EAGER, optional = false)
-   // @JoinColumn(name = "rollno")
-
+    //@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    //@JoinColumn(name = "scoreId")
+	//private Student student;
     
 
 	public String getSubject() {
@@ -58,12 +60,12 @@ public class Score {
 		return "Score [subject=" + subject + ", percentage=" + percentage + "]";
 	}
 
-	public Integer getScoreid() {
-		return scoreid;
+	public Integer getScoreId() {
+		return scoreId;
 	}
 
-	public void setScoreid(Integer scoreid) {
-		this.scoreid = scoreid;
+	public void setScoreId(Integer scoreid) {
+		this.scoreId = scoreid;
 	}
 
 	

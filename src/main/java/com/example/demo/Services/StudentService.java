@@ -8,6 +8,7 @@ import java.util.Scanner;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Score;
@@ -72,11 +73,28 @@ public class StudentService {
 	}
 
 
-/*	public int Average(String subject, int percentage) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-*/
-	   	
 	
+	public List<Student> getAllStudents()
+	{
+	   	 return studentRepository.findAll(Sort.by(Sort.Direction.DESC, "name")); 
+	}
+	
+	
+
+	public Student getStudentById(int rollno)
+	{
+		Student s = studentRepository.findByRollno(rollno);
+		return s;
+	}
+	
+	
+	public int deleteStudent(String name)
+	{
+		List<Student> l= studentRepository.findByName(name);
+		int size = l.size();
+		studentRepository.deleteAll(l);
+		
+		return size;
+		
+	}
 }
